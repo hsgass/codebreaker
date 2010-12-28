@@ -10,14 +10,14 @@ module Codebreaker
         end
       end
 
-      context "1 exact match" do
+      context "with 1 exact match" do
         it "returns 1" do
           marker = Marker.new('1234', '1555')
           marker.exact_match_count.should == 1
         end
       end
 
-      context "1 number match and 1 exact match" do
+      context "with 1 number match and 1 exact match" do
         it "returns 1" do
           marker = Marker.new('1234', '1525')
           marker.exact_match_count.should == 1
@@ -33,17 +33,24 @@ module Codebreaker
         end
       end
 
-      context "1 number match" do
+      context "with 1 number match" do
         it "returns 1" do
           marker = Marker.new('1234', '2555')
           marker.number_match_count.should == 1
         end
       end
 
-      context "1 number match and 1 exact match" do
+      context "with 1 number match and 1 exact match" do
         it "returns 1" do
           marker = Marker.new('1234', '1525')
           marker.number_match_count.should == 1
+        end
+      end
+
+      context "with 1 exact match duplicated in guess" do
+        it "returns 0" do
+          marker = Marker.new('1234', '1155')
+          marker.number_match_count.should == 0
         end
       end
 
